@@ -5,7 +5,14 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)):
-                if nums[i] + nums[j] == target:
-                    return [i, j]
+        hashtable_dict = {}
+        
+        for i in range(0, len(nums)):
+            value = target - nums[i]
+            
+            if hashtable_dict.get(value) is not None and hashtable_dict[value] != i:
+                return sorted([i, hashtable_dict[value]])
+            
+            hashtable_dict[nums[i]] = i
+            
+        return [-1, -1]
