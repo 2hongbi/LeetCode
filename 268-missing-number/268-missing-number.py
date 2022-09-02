@@ -4,15 +4,11 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        nums.sort()
+        missing = len(nums)
         
-        if nums[-1] != len(nums):
-            return len(nums)
-        if nums[0] != 0:
-            return 0
-        
-        for i in range(1, len(nums)):
-            expected = nums[i - 1] + 1
-            if expected != nums[i]:
-                return expected
-        return -1
+        for i in range(len(nums)):
+            missing = missing ^ i ^ nums[i]
+            
+        return missing
+    
+            
