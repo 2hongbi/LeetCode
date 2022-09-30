@@ -12,7 +12,7 @@ class Solution(object):
             count = [0] * 26
             
             for ch in s:
-                count[ord(ch) - ord('a')] += 1
+                count[ord(ch) - 97] += 1
             hashmap[tuple(count)].append(s)
         
         return hashmap.values()
