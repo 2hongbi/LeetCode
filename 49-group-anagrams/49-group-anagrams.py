@@ -6,9 +6,13 @@ class Solution(object):
         :type strs: List[str]
         :rtype: List[List[str]]
         """
-        anagrams = collections.defaultdict(list)
+        hashmap = collections.defaultdict(list)
         
-        for word in strs:
-            anagrams[''.join(sorted(word))].append(word)
-        return list(anagrams.values())
+        for s in strs:
+            count = [0] * 26
+            
+            for ch in s:
+                count[ord(ch) - ord('a')] += 1
+            hashmap[tuple(count)].append(s)
         
+        return hashmap.values()
